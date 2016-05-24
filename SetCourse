@@ -1,0 +1,108 @@
+package com.dong.collection;
+
+import java.util.*;
+
+public class SetCourse {
+	public List<Course> coursesToSelect;
+	private Scanner console;
+	public Student student;
+	
+	public SetCourse(){
+		coursesToSelect=new ArrayList<Course>();
+		console=new Scanner(System.in);
+	}
+	
+	public void SetAdd(){
+		Course cr1= new Course("1","高等数学");
+		coursesToSelect.add(cr1);
+		Course temp1 = (Course) coursesToSelect.get(0);
+//		System.out.println("加入课程： "+temp1.getID()+" , "+temp1.getName());
+		
+		Course cr2 = new Course("2","C语言");
+		coursesToSelect.add(1, cr2);
+		Course temp2 = (Course) coursesToSelect.get(1);
+//		System.out.println("加入课程： "+temp2.getID()+" , "+temp2.getName());
+		
+		Course[] course = {new Course("3","数据结构"), new Course("4","离散数学")};
+		coursesToSelect.addAll(Arrays.asList(course));
+		Course temp3 = (Course) coursesToSelect.get(2);
+		Course temp4 = (Course) coursesToSelect.get(3);
+//		System.out.println("加入课程： "+temp3.getID()+" , "+temp3.getName());
+//		System.out.println("加入课程： "+temp4.getID()+" , "+temp4.getName());
+		
+		Course[] course2 = { new Course("5","近现代史纲要"),new Course("6","编译原理")};
+		coursesToSelect.addAll(2, Arrays.asList(course2));
+		Course temp5 = (Course) coursesToSelect.get(2);
+		Course temp6 = (Course) coursesToSelect.get(3);
+//		System.out.println("加入课程： "+temp5.getID()+" , "+temp5.getName());
+//		System.out.println("加入课程： "+temp6.getID()+" , "+temp6.getName());
+	}
+	
+	public void SetForeach(){
+		System.out.println("有如下课程可选（foreach）：");
+		for (Object obj:coursesToSelect){
+			Course cr=(Course) obj;
+			System.out.println("课程:"+cr.getID()+","+cr.getName());
+		}
+	}
+	
+	public void SetForeachForSet(Student student){
+		System.out.println("共选择了"+student.courses.size()+"门课程。")
+		;
+		for (Course cr:student.courses){
+			System.out.println("选择了课程："+cr.getID()+","+cr.getName());
+		}
+	}
+	
+	public void setStudentSelect(){
+		student = new Student("1","云宇");
+		System.out.println("欢迎学生："+student.getName()+"  选课！");
+		
+		//Scanner console = new Scanner(System.in);
+		for(int i=0;i<3;i++){
+			System.out.println("请输入课程ID：");
+			String courseID=console.next();
+			for(Course cr:coursesToSelect){
+				if(cr.getID().equals(courseID)){
+					student.courses.add(cr);
+				}
+			}
+		}
+		
+		SetForeachForSet(student);
+	}
+	
+	public void listContains(){
+		//Scanner console = new Scanner(System.in);
+		String ID=null;
+		System.out.println("请输入要判断的课程名字：");
+		String name=console.next();
+			
+		Course newCourse=new Course(ID,name);
+		System.out.println("备选课程中是否包含该课程："+newCourse.getName()+","+coursesToSelect.contains(newCourse));
+		
+		if (coursesToSelect.contains(newCourse)){
+			System.out.println("课程 "+newCourse.getName()+" 的索引位置是："+coursesToSelect.indexOf(newCourse));
+		}
+	}
+	
+	public void listContainsAll(){
+		String[] name={};
+		for (int i=0;i<2;i++){
+			System.out.println("请输入课程名字：");
+			name[i]=console.next();
+		}
+		Course[] courses={new Course("1",name[1]),new Course("2",name[2])};
+		boolean test=coursesToSelect.containsAll(Arrays.asList(courses));
+		System.out.println("备选课程中是否包含这几门课程："+test);
+	}
+	
+	public void setContains(){
+		System.out.println("请输入已选的课程名称：");
+		String name = console.next();
+		Course course =new Course();
+		course.setName(name);
+		System.out.println("新创建课程："+course.getName());
+		System.out.println("备选课程中是否包含课程："+course.getName()+" , "+student.courses.contains(course));
+	}
+}
