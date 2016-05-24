@@ -1,0 +1,90 @@
+package com.dong.collection;
+
+import java.util.*;
+
+public class List_Course {
+	private List coursesToSelect;
+	
+	public List_Course(){
+		coursesToSelect = new ArrayList();
+	}
+	
+	public void listAdd(){
+		Course cr1= new Course("1","高等数学");
+		coursesToSelect.add(cr1);
+		Course temp1 = (Course) coursesToSelect.get(0);
+		System.out.println("加入课程： "+temp1.getID()+" , "+temp1.getName());
+		
+		Course cr2 = new Course("2","C语言");
+		coursesToSelect.add(1, cr2);
+		Course temp2 = (Course) coursesToSelect.get(1);
+		System.out.println("加入课程： "+temp2.getID()+" , "+temp2.getName());
+		
+		Course[] course = {new Course("3","数据结构"), new Course("4","离散数学")};
+		coursesToSelect.addAll(Arrays.asList(course));
+		Course temp3 = (Course) coursesToSelect.get(2);
+		Course temp4 = (Course) coursesToSelect.get(3);
+		System.out.println("加入课程： "+temp3.getID()+" , "+temp3.getName());
+		System.out.println("加入课程： "+temp4.getID()+" , "+temp4.getName());
+		
+		Course[] course2 = { new Course("5","近现代史纲要"),new Course("6","编译原理")};
+		coursesToSelect.addAll(2, Arrays.asList(course2));
+		Course temp5 = (Course) coursesToSelect.get(2);
+		Course temp6 = (Course) coursesToSelect.get(3);
+		System.out.println("加入课程： "+temp5.getID()+" , "+temp5.getName());
+		System.out.println("加入课程： "+temp6.getID()+" , "+temp6.getName());
+		
+		coursesToSelect.add(2,cr1);
+		Course temp7 = (Course) coursesToSelect.get(2);
+		System.out.println("加入课程： "+temp7.getID()+" , "+temp7.getName());
+	}
+	
+	public void listGet(){
+		int size=coursesToSelect.size();
+		System.out.println("可选课程如下：");
+		
+		for (int i=0;i<size;i++){
+			Course cr=(Course)coursesToSelect.get(i);
+			System.out.println("课程:"+cr.getID()+","+cr.getName());
+		}
+	}
+	
+	public void listIterator(){
+		Iterator it=coursesToSelect.iterator();
+		System.out.println("有如下课程可选（迭代器）：");
+		
+		while(it.hasNext()){
+			Course cr=(Course) it.next();
+			System.out.println("课程:"+cr.getID()+","+cr.getName());
+		}
+	}
+	
+	public void listForeach(){
+		System.out.println("有如下课程可选（foreach）：");
+		for (Object obj:coursesToSelect){
+			Course cr=(Course) obj;
+			System.out.println("课程:"+cr.getID()+","+cr.getName());
+		}
+	}
+	
+	public void listModify(int indexMod, Course courseMod){
+		coursesToSelect.set(indexMod, courseMod);
+	}
+	
+	public void listRemove(int index){
+		Course cr=(Course) coursesToSelect.get(index);
+		coursesToSelect.remove(cr);
+		listForeach();
+	}
+	
+	public void listRemoveIndex(int index){
+		coursesToSelect.remove(index);
+		listForeach();
+	}
+	
+	public void listRemoveAll(){
+		Course[] course={(Course) coursesToSelect.get(2), (Course) coursesToSelect.get(3)};
+		coursesToSelect.removeAll(Arrays.asList(course));
+		listForeach();
+	}
+}
