@@ -1,0 +1,36 @@
+package com.dong.collection;
+
+import java.util.*;
+
+public class ListGeneric {
+
+	private List<Course> courses;
+	
+	public ListGeneric(){
+		courses = new ArrayList<Course>();
+	}
+	
+	public void ListAdd(){
+		Course cr = new Course("1","操作系统");
+		courses.add(cr);
+	}
+	
+	public void ListAddAll(){
+		Course[] course= {new Course("2","JAVA编程思想"), new Course("3","C语言"),new Course("4","C和指针"),new Course("5","编译原理")};
+		courses.addAll(Arrays.asList(course));
+	}
+	
+	public void ListForeach(){
+		System.out.println("有如下课程可选（foreach）：");
+		for(Course cr:courses){
+			System.out.println("课程:"+cr.getID()+","+cr.getName());
+		}
+	}
+	
+	public void ListChild(){
+		ChildCourse ccr= new ChildCourse();
+		ccr.setID("6");
+		ccr.setName("子类课程实例");
+		courses.add(ccr);
+	}
+}
