@@ -1,0 +1,82 @@
+package com.dong.collection;
+
+import java.util.*;
+
+public class CollectionSort {
+	
+	public void sortInteger(){
+		List <Integer> integerList=new ArrayList<Integer>();
+		Random random = new Random();
+		Integer k;
+		
+		for (int i =0; i < 10 ; i++){
+			do{
+				k=random.nextInt(100);
+			}while(integerList.contains(k));
+			integerList.add(k);
+			System.out.println("添加整数："+k);
+		}
+		System.out.println("----------排序前----------------");
+		for (Integer integer: integerList){
+			System.out.println("排序前元素："+integer);
+		}
+		Collections.sort(integerList);
+		System.out.println("-----------排序后---------------");
+		for (Integer integer: integerList){
+			System.out.println("排序后元素："+integer);
+		}
+	}
+	
+	public void sortString(){
+		List<String> stringList=new ArrayList<String>();
+		stringList.add("Google");
+		stringList.add("Apple");
+		stringList.add("Gateway");
+		
+		System.out.println("-------------排序前-----------------");
+		for (String string:stringList){
+			System.out.println("元素："+string);
+		}
+		
+		Collections.sort(stringList);
+		
+		System.out.println("-------------排序后-----------------");
+		for (String string:stringList){
+			System.out.println("元素："+string);
+		}
+	}
+	
+	public void sortStringComplex(){
+		List<String> stringList = new ArrayList<String>();
+		String base = "qwertyuiopasdfghjklzxcvbnm0123456789QWERTYUIOPASDFGHJKLZXCVBNM";
+		Random random = new Random();
+		Integer k;
+		
+		for(int i=0;i<10;i++){
+			StringBuffer str= new StringBuffer();
+			do{
+				k=random.nextInt(10);
+			}while(k==0);
+			
+			do{
+				for(int j =0; j <k;j++){
+					int num = random.nextInt(base.length());
+					str.append(base.charAt(num));
+				}
+			}while(stringList.contains(str.toString()));
+			
+			stringList.add(str.toString());
+		}
+		
+		System.out.println("----------排序前-------------------");
+		for(String string:stringList){
+			System.out.println("元素："+string);
+		}
+		
+		Collections.sort(stringList);
+		System.out.println("----------排序后-------------------");
+		for(String string:stringList){
+			System.out.println("元素："+string);
+		}
+	}
+}
